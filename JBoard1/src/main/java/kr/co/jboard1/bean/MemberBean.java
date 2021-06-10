@@ -2,7 +2,7 @@ package kr.co.jboard1.bean;
 
 public class MemberBean {
 	private String uid;
-	private String pass1;
+	private String pass;
 	private String name;
 	private String nick;
 	private String email;
@@ -20,11 +20,11 @@ public class MemberBean {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getPass1() {
-		return pass1;
+	public String getPass() {
+		return pass;
 	}
-	public void setPass(String pass1) {
-		this.pass1 = pass1;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public String getName() {
 		return name;

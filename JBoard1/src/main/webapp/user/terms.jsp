@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard1.db.DBConfig"%>
 <%@page import="kr.co.jboard1.bean.TermsBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -5,19 +6,11 @@
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	//DB 정보
-	String host = "jdbc:mysql://54.180.105.158:3306/kim415272";
-	String user = "kim415272";
-	String pass = "1234";
-	
 	TermsBean tb = new TermsBean();
 	
 	try{
-		// 1단계
-		Class.forName("com.mysql.jdbc.Driver");
-		
-		// 2단계
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		// 1,2단계
+		Connection conn = DBConfig.getInstance().getConnection();
 		
 		// 3단계
 		Statement stmt = conn.createStatement();

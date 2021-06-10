@@ -11,7 +11,7 @@
         <section id="board" class="modify">
             <h3>글수정</h3>
             <article>
-                <form action="#">
+                <form action="/JBoard1/proc/write.jsp" method="post">
                     <table>
                         <tr>
                             <td>제목</td>
