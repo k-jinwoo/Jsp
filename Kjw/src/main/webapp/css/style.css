@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.gap{
+	margin-top:20px;
+}
+#contents{
+	min-height:700px;
+}
+.loginimg{
+	width:20px;
+}
+#footer{
+	border-top:1px solid #999;background-color:#EAEAEA;
+}
