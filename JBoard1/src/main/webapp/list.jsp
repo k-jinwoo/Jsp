@@ -1,3 +1,12 @@
+<%@page import="kr.co.jboard1.dao.ArticleDao"%>
+<%@page import="kr.co.jboard1.bean.ArticleBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="kr.co.jboard1.db.Sql"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="kr.co.jboard1.db.DBConfig"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="kr.co.jboard1.bean.MemberBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
@@ -9,7 +18,27 @@
 		response.sendRedirect("/JBoard1/user/login.jsp?success=101");
 		return;
 	}
-
+	
+	// 전송 파라미터 수신
+	String pg = request.getParameter("pg");
+	
+	// DAO 객체 가져오기
+	ArticleDao dao = ArticleDao.getInstance();
+	
+	// 페이지 번호 계산하기
+	int total = dao.selectCountArticle();
+	int lastPageNum = dao.getLastPageNum(total);
+	int currentPage = dao.getCurrentPage(pg);
+	int start = dao.getLimitStart(currentPage);
+	int pageStartNum = dao.getPageStartNum(total, start);
+	
+	
+	
+	// 게시물 가져오기
+	List<ArticleBean> articles = dao.selectArticles(start);
+	
+	
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,22 +64,24 @@
                         <th>날짜</th>
                         <th>조회</th>
                     </tr>
+                    <% for(ArticleBean article : articles){ %>
                     <tr>
-                        <td>1</td>
-                        <td><a href="/JBoard1/view.jsp">테스트 제목입니다.</a>&nbsp;[3]</td>
-                        <td>길동이</td>
-                        <td>20-05-12</td>
-                        <td>12</td>
+                        <td><%= pageStartNum-- %></td>
+                        <td><a href="/JBoard1/view.jsp"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
+                        <td><%= article.getNick() %></td>
+                        <td><%= article.getRdate().substring(2, 10) %></td>
+                        <td><%= article.getHit() %></td>
                     </tr>
+                    <% } %>
                 </table>
             </article>
 
             <!-- 페이지 네비게이션 -->
             <div class="paging">
                 <a href="#" class="prev">이전</a>
-                <a href="#" class="num current">1</a>                
-                <a href="#" class="num">2</a>                
-                <a href="#" class="num">3</a>                
+                <% for(int i=1; i<=lastPageNum; i++) { %>
+                <a href="/JBoard1/list.jsp?pg=<%= i %>" class="num"><%= i %></a>
+                <% } %>
                 <a href="#" class="next">다음</a>
             </div>
 

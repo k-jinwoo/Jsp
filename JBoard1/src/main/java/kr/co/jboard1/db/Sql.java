@@ -29,13 +29,17 @@ public class Sql {
 								   + "`uid`=?,"
 								   + "`regip`=?,"
 								   + "`rdate`=NOW();";
+	public static final String SELECT_COUNT_ARTICLE = "SELECT COUNT(*) FROM `JBOARD_ARTICLE`;";
+	public static final String SELECT_ARTICLES = "SELECT a.*,b.`nick` FROM `JBOARD_ARTICLE` AS a "
+												+ "JOIN `JBOARD_MEMBER` AS b "
+												+ "ON a.uid = b.uid "	
+												+ "ORDER BY `seq` DESC "
+												+ "LIMIT ?, 10";
 	
 	public static final String INSERT_FILE = "INSERT INTO `JBOARD_FILE` SET "
 										   + "`parent`=?,"
 										   + "`oriName`=?,"
 										   + "`newName`=?,"
 										   + "`rdate`=NOW();";
-	
-	
 	
 }
