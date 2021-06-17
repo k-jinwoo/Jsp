@@ -5,6 +5,7 @@
 	String seq     = request.getParameter("seq");
 	String title   = request.getParameter("title");
 	String content = request.getParameter("content");
+
 	ArticleDao.getInstance().updateArticle(title, content, seq);
 	
 	response.sendRedirect("/JBoard1/view.jsp?seq="+seq);

@@ -1,7 +1,5 @@
 /**
- 	날짜 : 2021/06/08
-	이름 : 김진우
-	내용 : 주소 입력
+ * 
  */
 function zipcode() {
 	        new daum.Postcode({

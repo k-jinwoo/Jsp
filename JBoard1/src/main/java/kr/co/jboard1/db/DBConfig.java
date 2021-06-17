@@ -4,24 +4,39 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBConfig {
+	
 	private static DBConfig instance = new DBConfig();
 	private DBConfig() {}
 	
 	public static DBConfig getInstance() {
 		return instance;
 	}
-	
-	//DB ì •ë³´
-	private final String HOST = "jdbc:mysql://54.180.105.158:3306/kim415272";
-	private final String USER = "kim415272";
+		
+	//DB Á¤º¸
+	private final String HOST = "jdbc:mysql://54.180.160.240:3306/chhak2021";
+	private final String USER = "chhak2021";
 	private final String PASS = "1234";
 	
 	public Connection getConnection() throws Exception {
-		// 1ë‹¨ê³„
+		// 1´Ü°è
 		Class.forName("com.mysql.jdbc.Driver");
-		// 2ë‹¨ê³„
+		// 2´Ü°è
 		Connection conn = DriverManager.getConnection(HOST, USER, PASS);
 		
 		return conn;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

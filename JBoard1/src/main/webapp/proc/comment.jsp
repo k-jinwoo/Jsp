@@ -1,5 +1,5 @@
-<%@page import="kr.co.jboard1.dao.ArticleDao"%>
 <%@page import="kr.co.jboard1.bean.ArticleBean"%>
+<%@page import="kr.co.jboard1.dao.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 전송 데이터 수신
@@ -26,3 +26,6 @@
 	// 리다이렉트
 	response.sendRedirect("/JBoard1/view.jsp?seq="+parent);
 %>
+
+
+

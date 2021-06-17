@@ -11,7 +11,7 @@ import kr.co.jboard1.bean.FileBean;
 import kr.co.jboard1.db.DBConfig;
 import kr.co.jboard1.db.Sql;
 
-// DAO(Database Access Object) 클래스
+// DAO(Database Access Object) Ŭ����
 public class ArticleDao {
 
 	private static ArticleDao instance = new ArticleDao();
@@ -22,6 +22,7 @@ public class ArticleDao {
 	}
 	
 	public int[] getPageGroup(int currentPage, int lastPageNum) {
+		
 		int groupCurrent = (int) Math.ceil(currentPage / 10.0);
 		int groupStart = (groupCurrent - 1) * 10 + 1;
 		int groupEnd = groupCurrent * 10;
@@ -30,9 +31,9 @@ public class ArticleDao {
 			groupEnd = lastPageNum;
 		}
 		
-		int[] groups = {groupStart, groupEnd};
+		int[] groups = {groupStart, groupEnd}; 
 		
-		return groups;
+		return groups;		
 	}
 	
 	public int getPageStartNum(int total, int start) {
@@ -44,15 +45,18 @@ public class ArticleDao {
 	}
 	
 	public int getCurrentPage(String pg) {
+		
 		int currentPage = 1;
 		
 		if(pg != null) {
 			currentPage = Integer.parseInt(pg);
 		}
+		
 		return currentPage;
 	}
 	
 	public int getLastPageNum(int total) {
+		
 		int lastPageNum = 0;
 		
 		if(total % 10 == 0){
@@ -60,68 +64,70 @@ public class ArticleDao {
 		}else{
 			lastPageNum = total / 10 + 1;
 		}
+		
 		return lastPageNum;
 	}
 	
 	public int selectCountArticle() {
+		
 		int total = 0;
 		
 		try{
-			// 1,2단계
+			// 1, 2�ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
-			// 3단계
+			// 3�ܰ�
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COUNT_ARTICLE);
-			// 4단계
+			// 4�ܰ�
 			ResultSet rs = psmt.executeQuery();
-			// 5단계
+			// 5�ܰ�
 			if(rs.next()) {
 				total = rs.getInt(1);
 			}
-			// 6단계
+			
+			// 6�ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		return total;
 	}
 	
 	public void insertArticle() {}
 	public void insertComment(ArticleBean comment) {
 		try{
-			// 1,2 ´Ü°è
+			// 1,2 �ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
-			// 3 ´Ü°è
+			// 3 �ܰ�
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
 			psmt.setInt(1, comment.getParent());
 			psmt.setString(2, comment.getContent());
 			psmt.setString(3, comment.getUid());
 			psmt.setString(4, comment.getRegip());
-			// 4 ´Ü°è
+			// 4 �ܰ�
 			psmt.executeUpdate();
-			// 5 ´Ü°è
-			// 6 ´Ü°è
+			// 5 �ܰ�
+			// 6 �ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
-	
-	
-public ArticleBean selectArticle(String seq) {
+	public ArticleBean selectArticle(String seq) {
 		
 		ArticleBean article = new ArticleBean();
 		FileBean fb = new FileBean();
 		
 		try{
-			// 1,2´Ü°è
+			// 1,2�ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
-			// 3´Ü°è
+			// 3�ܰ�
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLE);
 			psmt.setString(1, seq);
-			// 4´Ü°è
+			// 4�ܰ�
 			ResultSet rs = psmt.executeQuery();
-			// 5´Ü°è
+			// 5�ܰ�
 			if(rs.next()) {
 				article.setSeq(rs.getInt(1));
 				article.setParent(rs.getInt(2));
@@ -135,7 +141,7 @@ public ArticleBean selectArticle(String seq) {
 				article.setRegip(rs.getString(10));
 				article.setRdate(rs.getString(11));
 				
-				// Ãß°¡ÇÊµå
+				// �߰��ʵ�
 				fb.setSeq(rs.getInt(12));
 				fb.setParent(rs.getInt(13));
 				fb.setOriName(rs.getString(14));
@@ -145,7 +151,7 @@ public ArticleBean selectArticle(String seq) {
 				
 				article.setFb(fb);
 			}
-			// 6´Ü°è
+			// 6�ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -153,21 +159,20 @@ public ArticleBean selectArticle(String seq) {
 		
 		return article;
 	}
-
-
+	
 	public List<ArticleBean> selectArticles(int start) {
 		
 		List<ArticleBean> articles = new ArrayList<>();
 		
 		try{
-			// 1,2단계
+			// 1,2�ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
-			// 3단계
+			// 3�ܰ�
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
 			psmt.setInt(1, start);
-			// 4단계
+			// 4�ܰ�
 			ResultSet rs = psmt.executeQuery();
-			// 5단계
+			// 5�ܰ�
 			while(rs.next()){
 				ArticleBean article = new ArticleBean();
 				article.setSeq(rs.getInt(1));
@@ -185,27 +190,28 @@ public ArticleBean selectArticle(String seq) {
 				
 				articles.add(article);
 			}
-			// 6단계
+			// 6�ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return articles;
+		
+		return articles;		
 	}// selectArticles end
 	
-public List<ArticleBean> selectComments(String parent) {
+	public List<ArticleBean> selectComments(String parent) {
 		
 		List<ArticleBean> articles = new ArrayList<>();
 		
 		try{
-			// 1,2´Ü°è
+			// 1,2�ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
-			// 3´Ü°è
+			// 3�ܰ�
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENTS);
 			psmt.setString(1, parent);
-			// 4´Ü°è
+			// 4�ܰ�
 			ResultSet rs = psmt.executeQuery();
-			// 5´Ü°è
+			// 5�ܰ�
 			while(rs.next()){
 				ArticleBean article = new ArticleBean();
 				article.setSeq(rs.getInt(1));
@@ -223,7 +229,7 @@ public List<ArticleBean> selectComments(String parent) {
 				
 				articles.add(article);
 			}
-			// 6´Ü°è
+			// 6�ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -260,7 +266,6 @@ public List<ArticleBean> selectComments(String parent) {
 		return fb;
 	}
 	
-	
 	public void updateArticle(String title, String content, String seq) {
 		
 		try {
@@ -279,15 +284,15 @@ public List<ArticleBean> selectComments(String parent) {
 	
 	public void updateArticleHit(String seq) {
 		try{
-			// 1,2´Ü°è
+			// 1,2�ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
-			// 3´Ü°è
+			// 3�ܰ�
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);
 			psmt.setString(1, seq);
-			// 4´Ü°è
+			// 4�ܰ�
 			psmt.executeUpdate();
-			// 5´Ü°è			
-			// 6´Ü°è
+			// 5�ܰ�			
+			// 6�ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -298,10 +303,10 @@ public List<ArticleBean> selectComments(String parent) {
 		try{
 			PreparedStatement psmt = null;
 			
-			// 1,2´Ü°è
+			// 1,2�ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
 			
-			// 3´Ü°è
+			// 3�ܰ�
 			if(type == 1) {
 				psmt = conn.prepareStatement(Sql.UPDATE_COMMENT_PLUS);
 			}else {
@@ -309,10 +314,10 @@ public List<ArticleBean> selectComments(String parent) {
 			}
 			
 			psmt.setString(1, seq);
-			// 4´Ü°è
+			// 4�ܰ�
 			psmt.executeUpdate();
-			// 5´Ü°è			
-			// 6´Ü°è
+			// 5�ܰ�			
+			// 6�ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -321,15 +326,15 @@ public List<ArticleBean> selectComments(String parent) {
 	
 	public void updateFileDownload(String seq) {
 		try{
-			// 1,2´Ü°è
+			// 1,2�ܰ�
 			Connection conn = DBConfig.getInstance().getConnection();
-			// 3´Ü°è
+			// 3�ܰ�
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_DOWNLOAD);
 			psmt.setString(1, seq);
-			// 4´Ü°è
+			// 4�ܰ�
 			psmt.executeUpdate();
-			// 5´Ü°è			
-			// 6´Ü°è
+			// 5�ܰ�			
+			// 6�ܰ�
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -338,9 +343,6 @@ public List<ArticleBean> selectComments(String parent) {
 	
 	public void deleteArticle() {}
 	
-	
-
-
 	public void deleteComment(String seq) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -353,6 +355,9 @@ public List<ArticleBean> selectComments(String parent) {
 			e.printStackTrace();
 		}
 	}
+	
+}
 
-	}
+
+
 

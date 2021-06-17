@@ -1,6 +1,7 @@
 package kr.co.jboard1.bean;
 
 public class TermsBean {
+	
 	private String terms;
 	private String privacy;
 	
@@ -10,11 +11,11 @@ public class TermsBean {
 	public void setTerms(String terms) {
 		this.terms = terms;
 	}
+	
 	public String getPrivacy() {
 		return privacy;
 	}
 	public void setPrivacy(String privacy) {
 		this.privacy = privacy;
 	}
-	
 }
