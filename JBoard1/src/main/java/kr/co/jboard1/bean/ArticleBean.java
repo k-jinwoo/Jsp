@@ -16,7 +16,14 @@ public class ArticleBean {
 	
 	// 추가 필드
 	private String nick;
+	private FileBean fb; 
 	
+	public FileBean getFb() {
+		return fb;
+	}
+	public void setFb(FileBean fb) {
+		this.fb = fb;
+	}
 	
 	public int getSeq() {
 		return seq;
@@ -29,6 +36,9 @@ public class ArticleBean {
 	}
 	public void setParent(int parent) {
 		this.parent = parent;
+	}
+	public void setParent(String parent) {
+		this.parent = Integer.parseInt(parent);
 	}
 	public int getComment() {
 		return comment;

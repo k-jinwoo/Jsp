@@ -18,13 +18,7 @@
 	// Multipart 전송 데이터 수신
 	String path = request.getServletContext().getRealPath("/file");
 	int maxSize = 1024 * 1024 * 10; // 최대 파일 허용용량 10MB
-	MultipartRequest mRequest = null;
-	
-	try{
-		mRequest = new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
-	}catch(Exception e){
-		e.printStackTrace();
-	}
+	MultipartRequest mRequest = new MultipartRequest(request, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 	
 	
 	String title = mRequest.getParameter("title");
@@ -65,6 +59,7 @@
 		e.printStackTrace();
 	}
 	
+	// 파일을 첨부했으면
 	if(fname != null){
 		// 고유한 파일 이름 생성하기
 		int i = fname.lastIndexOf(".");
