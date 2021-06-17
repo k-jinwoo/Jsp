@@ -2,18 +2,18 @@
 <%@page import="kr.co.jboard1.bean.ArticleBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="kr.co.jboard1.db.Sql"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="kr.co.jboard1.db.Sql"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
 <%@page import="kr.co.jboard1.db.DBConfig"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="kr.co.jboard1.bean.MemberBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 세션 사용정보 가져오기
 	MemberBean mb = (MemberBean) session.getAttribute("sessMember");
-	
-	// 로그인을 하지 않고 List 페이지를 요청할 경우
+
+	// 로그인을 하지 않고 list 페이지를 요청할 경우
 	if(mb == null){
 		response.sendRedirect("/JBoard1/user/login.jsp?success=101");
 		return;
@@ -32,6 +32,7 @@
 	int start = dao.getLimitStart(currentPage);
 	int pageStartNum = dao.getPageStartNum(total, start);
 	int groups[] = dao.getPageGroup(currentPage, lastPageNum);
+	
 	
 	// 게시물 가져오기
 	List<ArticleBean> articles = dao.selectArticles(start);
@@ -75,18 +76,15 @@
 
             <!-- 페이지 네비게이션 -->
             <div class="paging">
-            
             	<% if(groups[0] > 1){ %>
-                	<a href="/JBoard1/list.jsp?pg=<%= groups[0] - 1 %>" class="prev">이전</a>
+                <a href="/JBoard1/list.jsp?pg=<%= groups[0] - 1 %>" class="prev">이전</a>
                 <% } %>
-                
-                <% for(int i=groups[0] ; i<=groups[1] ; i++){ %>
-                	<a href="/JBoard1/list.jsp?pg=<%= i %>" class="num <%= (currentPage == i) ? "current":"" %>"><%= i %></a>
+                <% for(int i=groups[0]; i<=groups[1]; i++) { %>
+                <a href="/JBoard1/list.jsp?pg=<%= i %>" class="num <%= (currentPage == i) ? "current":"" %>"><%= i %></a>
                 <% } %>
-                
                 <% if(groups[1] < lastPageNum){ %>
-                	<a href="/JBoard1/list.jsp?pg=<%= groups[1] + 1 %>" class="next">다음</a>
-                <% } %>	
+                <a href="/JBoard1/list.jsp?pg=<%= groups[1] + 1 %>" class="next">다음</a>
+                <% } %>
             </div>
 
             <!-- 글쓰기 버튼 -->

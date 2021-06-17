@@ -1,7 +1,6 @@
 package kr.co.jboard1.db;
 
 public class Sql {
-	
 	public static final String SELECT_COUNT_EMAIL = "SELECT COUNT(`email`) FROM `JBOARD_MEMBER` WHERE `email`=?";
 	public static final String SELECT_COUNT_HP    = "SELECT COUNT(`hp`)    FROM `JBOARD_MEMBER` WHERE `hp`=?";
 	public static final String SELECT_COUNT_NICK  = "SELECT COUNT(`nick`)  FROM `JBOARD_MEMBER` WHERE `nick`=?";              
@@ -76,27 +75,16 @@ public class Sql {
 												+ "`content`=? "
 												+ "WHERE `seq`=?";
 	
+	public static final String UPDATE_COMMENT = "UPDATE `JBOARD_ARTICLE` SET "
+												+ "`content`=? "
+												+ "WHERE `seq`=?";
+	
 	public static final String UPDATE_ARTICLE_HIT   = "UPDATE `JBOARD_ARTICLE` SET `hit`=`hit`+1 WHERE `seq`=?";
 	public static final String UPDATE_COMMENT_PLUS  = "UPDATE `JBOARD_ARTICLE` SET `comment`=`comment`+1 WHERE `seq`=?";
 	public static final String UPDATE_COMMENT_MINUS = "UPDATE `JBOARD_ARTICLE` SET `comment`=`comment`-1 WHERE `seq`=?";
 	
 	public static final String UPDATE_FILE_DOWNLOAD = "UPDATE `JBOARD_FILE`    SET `download`=`download`+1 WHERE `seq`=?";
 	
+	public static final String DELETE_ARTICLE = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=?";
 	public static final String DELETE_COMMENT = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=?";
-	
-		
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

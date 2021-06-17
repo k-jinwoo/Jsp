@@ -14,9 +14,9 @@ public class ArticleBean {
 	private String regip;
 	private String rdate;
 	
-	// Ãß°¡ÇÊµå
+	// ì¶”ê°€ í•„ë“œ
 	private String nick;
-	private FileBean fb;
+	private FileBean fb; 
 	
 	public FileBean getFb() {
 		return fb;
@@ -24,14 +24,6 @@ public class ArticleBean {
 	public void setFb(FileBean fb) {
 		this.fb = fb;
 	}
-	
-	public String getNick() {
-		return nick;
-	}
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-	
 	
 	public int getSeq() {
 		return seq;
@@ -42,14 +34,12 @@ public class ArticleBean {
 	public int getParent() {
 		return parent;
 	}
-	
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
 	public void setParent(String parent) {
 		this.parent = Integer.parseInt(parent);
 	}
-	
 	public int getComment() {
 		return comment;
 	}
@@ -103,5 +93,11 @@ public class ArticleBean {
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 }

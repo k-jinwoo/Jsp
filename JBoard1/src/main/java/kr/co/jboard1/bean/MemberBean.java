@@ -7,7 +7,7 @@ public class MemberBean {
 	private String nick;
 	private String email;
 	private String hp;
-	private int    grade;
+	private int grade;
 	private String zip;
 	private String addr1;
 	private String addr2;
@@ -86,6 +86,6 @@ public class MemberBean {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-
+	
 	
 }

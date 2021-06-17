@@ -1,5 +1,5 @@
-<%@page import="kr.co.jboard1.bean.ArticleBean"%>
 <%@page import="kr.co.jboard1.dao.ArticleDao"%>
+<%@page import="kr.co.jboard1.bean.ArticleBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -8,7 +8,6 @@
  	// 수정 글 가져오기
  	ArticleBean article = ArticleDao.getInstance().selectArticle(seq);
  	
-
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +22,7 @@
             <h3>글수정</h3>
             <article>
                 <form action="/JBoard1/proc/modify.jsp" method="post">
-                	<input type="hidden" name="seq" value="<%= seq %>"/> 
+                <input type="hidden" name="seq" value="<%= seq %>"/>
                     <table>
                         <tr>
                             <td>제목</td>
@@ -35,7 +34,7 @@
                                 <textarea name="content"><%= article.getContent() %></textarea>                                
                             </td>
                         </tr>
-                        <!-- 
+                        <!--
                         <tr>
                             <td>첨부</td>
                             <td><input type="file" name="file"/></td>
@@ -44,7 +43,7 @@
                     </table>
                     <div>
                         <a href="/JBoard1/view.jsp?seq=<%= seq %>" class="btnCancel">취소</a>
-                        <input type="submit"  class="btnWrite" value="수정완료"/>
+                        <input type="submit"  class="btnWrite" value="수정완료">
                     </div>
                 </form>
             </article>

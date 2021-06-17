@@ -18,7 +18,7 @@
     		alert('먼저 로그인을 하셔야 합니다.');
     	}else if(success == 102){
     		alert('정상적으로 로그아웃이 되었습니다.');
-    	}    
+    	}
     </script>
 </head>
 <body>
@@ -45,6 +45,7 @@
                 </p>
                 <a href="/JBoard1/user/terms.jsp">회원가입</a>
             </div>
+
         </section>
     </div>    
 </body>

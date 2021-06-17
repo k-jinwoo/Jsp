@@ -1,4 +1,3 @@
-<%@page import="kr.co.jboard1.db.Sql"%>
 <%@page import="kr.co.jboard1.db.DBConfig"%>
 <%@page import="kr.co.jboard1.bean.TermsBean"%>
 <%@page import="java.sql.ResultSet"%>
@@ -8,26 +7,30 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	TermsBean tb = new TermsBean();
-
+	
 	try{
-		//1,2단계
+		// 1,2단계
 		Connection conn = DBConfig.getInstance().getConnection();
+		
 		// 3단계
 		Statement stmt = conn.createStatement();
+		
 		// 4단계
-		ResultSet rs = stmt.executeQuery(Sql.SELECT_TERMS);
+		String sql = "SELECT * FROM `JBOARD_TERMS`;";
+		ResultSet rs = stmt.executeQuery(sql);
+		
 		// 5단계
 		if(rs.next()){
 			tb.setTerms(rs.getString(1));
 			tb.setPrivacy(rs.getString(2));
 		}
+		
 		// 6단계
 		conn.close();
 	}catch(Exception e){
 		e.printStackTrace();
 	}
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

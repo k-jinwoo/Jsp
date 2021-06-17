@@ -1,7 +1,6 @@
 package kr.co.jboard1.bean;
 
 public class FileBean {
-	
 	private int seq;
 	private int parent;
 	private String oriName;

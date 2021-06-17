@@ -11,6 +11,5 @@
 	
 	// 댓글 카운트 -1
 	ArticleDao.getInstance().updateCommentCount(parent, -1);
-
 	response.sendRedirect("/JBoard1/view.jsp?seq="+parent);
 %>
