@@ -1,4 +1,10 @@
+<%@page import="kr.co.FarmStory.bean.MemberBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	MemberBean mb = (MemberBean)session.getAttribute("sessMember");
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +13,11 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
     <link rel="stylesheet" href="/FarmStory/css/style.css"/>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>    
-    <script>
-        $(function(){
-            $('.slider > ul').bxSlider({
-                slideWidth: 980,
-                pager: false,
-                controls: false,
-                auto: true
-            });
-
-            $('#tabs').tabs();
-
-        });
-    </script>
+ 
 </head>
 <body>
     <div id="wrapper">
@@ -30,10 +25,16 @@
         <header>
             <a href="/FarmStory/index.jsp" class="logo"><img src="/FarmStory/img/logo.png" alt="로고"/></a>
             <p>
+            	<% if(mb == null){ %>
                 <a href="/FarmStory">HOME |</a>
                 <a href="/FarmStory/user/login.jsp">로그인 |</a>
                 <a href="/FarmStory/user/terms.jsp">회원가입 |</a>
-                <a href="/FarmStory/community/qna.jsp">고객센터</a>
+                <% }else{ %>
+                <span><%= mb.getNick() %>님 반갑습니다.</span>
+                <a href="/FarmStory">HOME |</a>
+                <a href="/FarmStory/user/proc/logout.jsp">로그아웃 |</a>
+                <% } %>
+                <a href="/FarmStory/board/list.jsp?group=community&cate=qna">고객센터</a>
             </p>
             <img src="/FarmStory/img/head_txt_img.png" alt="3만원 이상 무료배송"/>
             
