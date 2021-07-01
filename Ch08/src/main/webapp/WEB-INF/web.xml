@@ -9,19 +9,18 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
-
- <!-- 컨트롤러(서블릿) 등록 -->
- <servlet>
+  
+  <!-- 컨트롤러(서블릿) 등록 -->
+  <servlet>
   	<servlet-name>MainController</servlet-name>
   	<servlet-class>controller.MainController</servlet-class>
   </servlet>
-
+  
   <servlet-mapping>
   	<servlet-name>MainController</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
-
+  
   <!-- 모델2 보안설정 -->
   <security-constraint>
   	<display-name>Prohibit Model1</display-name>
@@ -33,19 +32,20 @@
   		<role-name>nobody</role-name>
   	</auth-constraint>  
   </security-constraint>
- 
- <!-- 문자셋 인코딩 필터 등록 -->
- <filter>
- 	<filter-name>SetCharacterEncodingFilter</filter-name>
- 	<filter-class>.org.apache.catalina.filter.SetCharacterEncodingFilter</filter-class>
- 	<init-param>
- 		<param-name>encoding</param-name>
- 		<param-value>UTF-8</param-value>
- 	</init-param>
- </filter>
- 
- <filter-mapping>
- 	<filter-name>SetCharacterEncodingFilter</filter-name>
- 	<url-pattern>*.do</url-pattern>
- </filter-mapping>
+  
+  <!-- 문자셋 인코딩 필터 등록 -->
+  <filter>
+  	<filter-name>SetCharacterEncodingFilter</filter-name>
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>SetCharacterEncodingFilter</filter-name>
+  	<url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  
 </web-app>

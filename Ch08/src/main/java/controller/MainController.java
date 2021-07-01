@@ -81,17 +81,16 @@ public class MainController extends HttpServlet {
 		
 		// Service객체 실행 후 View 리턴 받기
 		String result = instance.requestProc(req, resp);
+		
 		if(result.startsWith("redirect:")) {
+			// redirects
 			String redirectUrl = result.substring(9);
 			resp.sendRedirect(redirectUrl);
 		}else {
 			// View 포워드
-		RequestDispatcher dispatcher = req.getRequestDispatcher(result);
-		dispatcher.forward(req, resp);
+			RequestDispatcher dispatcher = req.getRequestDispatcher(result);
+			dispatcher.forward(req, resp);
 			
 		}
-		
-		
-		
 	} // requestProc end...
 } // MainController end...
